@@ -511,10 +511,10 @@ fieldset {
 
 legend {
   display: block;
-  width: 100%;
+  width: 90%;
   padding: 0;
   margin-bottom: .5rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   line-height: inherit;
 }
 
