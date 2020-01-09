@@ -19,7 +19,7 @@ var config = {
 };
 
 
-function generatePieValuesAndColors(group, colorsRange){
+function generatePieValuesAndColors(group, ordinalColors){
     let values = [],
         colors = [];
     let arr = group.top(Infinity);
@@ -27,27 +27,29 @@ function generatePieValuesAndColors(group, colorsRange){
         values.push(arr[i].key);
     }
     for (var i = 0; i < values.length; i++) {
-        colors.push(colorsRange[i]);
+        colors.push(ordinalColors[i]);
     }
 
     return [values, colors];
 } //end generatePieValuesAndColors
 
-var brownColors = ['#a8763e', '#d3ba9e', '#caac8b'];
-var greenColors = ['#3ec76c', '#51cd7b', '#65d28a', '#79d899','#8ddea8','#a1e3b7','#89d879'];
-var otherColors = ['#fa8334','#fa8334','#fee6d6'];
 
-var c10 = d3.scale.category10();
-var c20 = d3.scale.category20();
-var c20b = d3.scale.category20b();
-var c20c = d3.scale.category20c();
-var green = ['#20bf55','#36c566','#4ccb76','#62d288','#79d899'];
-var brown = ['#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b'];
 
-function colores_google(n) {
-  var colores_g = ['#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b','#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b','#eab12f','#ecba46','#eec25e','#f1cb75','#f3d48c','#f5dca3','#f8e5ba','#faedd1','#fcf6e8'];
-  return colores_g[n % colores_g.length];
-}
+// var brownColors = ['#a8763e', '#d3ba9e', '#caac8b'];
+// var greenColors = ['#3ec76c', '#51cd7b', '#65d28a','#79d899','#8ddea8','#a1e3b7','#89d879','#4D6B49','#83D67A','#009944'];
+// var otherColors = ['#fa8334','#fa8334','#fee6d6'];
+
+// var c10 = d3.scale.category10();
+// var c20 = d3.scale.category20();
+// var c20b = d3.scale.category20b();
+// var c20c = d3.scale.category20c();
+// var green = ['#3ec76c', '#51cd7b', '#65d28a','#79d899','#8ddea8','#a1e3b7','#89d879','#4D6B49','#83D67A','#009944'];
+// var brown = ['#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b'];
+
+// function colores_google(n) {
+//   var colores_g = ['#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b','#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b','#eab12f','#ecba46','#eec25e','#f1cb75','#f3d48c','#f5dca3','#f8e5ba','#faedd1','#fcf6e8'];
+//   return colores_g[n % colores_g.length];
+// }
 
 function print_filter(filter) {
     var f=eval(filter);
@@ -341,8 +343,32 @@ function generate3WComponent(config, data, geom) {
         })
         .xAxis().ticks(5);
 
-    var coloring = ['#eab12f','#20bf55','#1cab4c','#f3d48c','#f8e5ba','#faedd1','#fcf6e8'];
-    let pie1 = generatePieValuesAndColors(MChartGroup, brownColors);
+    // var selfcoloring = ['#F3862A','#F59C50','#F7B277'];
+    // let pie3 = generatePieValuesAndColors(TPChartGroup, selfcoloring);
+    // let pieChart3Values = pie3[0],
+    //     pieChart3Colors = pie3[1];
+    // let pie3ColorScale = d3.scale.ordinal()
+    //     .domain(pieChart3Values)
+    //     .range(pieChart3Colors);
+
+    // var indexing3 = 0;
+    // TPChart.width(210).height(190)
+    //    .dimension(TPChartDim)
+    //    .group(TPChartGroup)
+    //    .renderTitle(true)
+    //    .innerRadius(30)
+    //    .colors(function(d){
+    //     return selfcoloring[d];
+    //    })
+    //    .colorAccessor(
+    //     function(d){
+    //         return pie3ColorScale.domain().indexOf(d.key);
+    //     })
+
+
+
+    var coloring = ['#88553D','#A07764','#B8998A'];
+    let pie1 = generatePieValuesAndColors(MChartGroup, coloring);
     let pieChart1Values = pie1[0],
         pieChart1Colors = pie1[1];
     let pie1ColorScale = d3.scale.ordinal()
@@ -354,7 +380,9 @@ function generate3WComponent(config, data, geom) {
        .group(MChartGroup)
        .renderTitle(true)
        .innerRadius(30)
-       .colors(pie1ColorScale.range())
+       .colors(function(d){
+        return coloring[d];
+       })
        .colorAccessor(
         function(d){
 
@@ -395,20 +423,23 @@ function generate3WComponent(config, data, geom) {
         })
         .xAxis().ticks(5);
 
-    var docoloring = ['#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b'];
-    let pie2 = generatePieValuesAndColors(VBSOAGroup, greenColors);
+    var docoloring = ['#036A58','#A3E8DC','#48D2B9','#038E75','#04B192','#1AC7A8','#76DDCB'];
+    let pie2 = generatePieValuesAndColors(VBSOAGroup, docoloring);
     let pieChart2Values = pie2[0],
         pieChart2Colors = pie2[1];
     let pie2ColorScale = d3.scale.ordinal()
         .domain(pieChart2Values)
         .range(pieChart2Colors);
+
     var indexing = 0;
     VBSOAChart.width(210).height(190)
        .dimension(VBSOADimension)
        .group(VBSOAGroup)
        .renderTitle(true)
        .innerRadius(30)
-       .colors(pie2ColorScale.range())
+       .colors(function(d){
+        return docoloring[d];
+       })
        .colorAccessor(
         function(d){
             return pie2ColorScale.domain().indexOf(d.key);
@@ -427,27 +458,6 @@ function generate3WComponent(config, data, geom) {
              reset_indexing();
           });
        });
-
-
-    // VBSOAChart.width($('.blockbar').width()).height(300).margins({top: 10, right: 10, bottom: 30, left: 0})
-        // .dimension(VBSOADimension)
-        // .group(VBSOAGroup)
-        // .elasticX(false)
-        // .data(function (group) {
-        //     return group.top(15);
-        // })
-        // .labelOffsetY(20)
-        // .colors([config.color])
-        // .colorAccessor(function (d) {
-        //     return 0;
-        // })
-        // .renderTitle(true)
-        // .title(function (d) {
-        //     text = d.key + " | No. Beneficiaries : " + formatComma(d.value);
-        //     return capitalizeFirstLetter(text);
-        // })
-    //     .xAxis().ticks(5);
-    
 
     TBBTChart.width($('.blockbar').width()).height(400).margins({top: 10, right: 10, bottom: 30, left: 0})
         .dimension(TBBTChartDim)
@@ -469,42 +479,24 @@ function generate3WComponent(config, data, geom) {
         .xAxis().ticks(5);
 
 
-    
-
-    // MChart.width($('.blockbar').width()).height(160).margins({top: 10, right: 10, bottom: 30, left: 0})
-    //     .dimension(MChartDim)
-    //     .group(MChartGroup)
-    //     .elasticX(true)
-    //     .data(function (group) {
-    //         return group.top(17);
-    //     })
-    //     .labelOffsetY(13)
-    //     .colors([config.color])
-    //     .colorAccessor(function (d) {
-    //         return 0;
-    //     })
-    //     .renderTitle(true)
-    //     .title(function (d) {
-    //         text = d.key + " | Activities : " + formatComma(d.value);
-    //         return text; //capitalizeFirstLetter(text);
-    //     })
-    //     .xAxis().ticks(5);
-
    
-    var selfcoloring = ['#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b','#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b','#eab12f','#ecba46','#eec25e','#f1cb75','#f3d48c','#f5dca3','#f8e5ba','#faedd1','#fcf6e8'];
-    let pie3 = generatePieValuesAndColors(TPChartGroup, otherColors);
+    var selfcoloring = ['#F3862A','#F59C50','#F7B277'];
+    let pie3 = generatePieValuesAndColors(TPChartGroup, selfcoloring);
     let pieChart3Values = pie3[0],
         pieChart3Colors = pie3[1];
     let pie3ColorScale = d3.scale.ordinal()
         .domain(pieChart3Values)
         .range(pieChart3Colors);
+
     var indexing3 = 0;
     TPChart.width(210).height(190)
        .dimension(TPChartDim)
        .group(TPChartGroup)
        .renderTitle(true)
        .innerRadius(30)
-       .colors(pie3ColorScale.range())
+       .colors(function(d){
+        return selfcoloring[d];
+       })
        .colorAccessor(
         function(d){
             return pie3ColorScale.domain().indexOf(d.key);
@@ -538,28 +530,6 @@ function generate3WComponent(config, data, geom) {
          indexing2 = 0;
          indexing3 = 0;
        }
-
-    // TPChart.width($('.blockbar').width()).height(160).margins({top: 10, right: 10, bottom: 30, left: 0})
-    //     .dimension(TPChartDim)
-    //     .group(TPChartGroup)
-    //     .elasticX(true)
-    //     .data(function (group) {
-    //         return group.top(17);
-    //     })
-    //     .labelOffsetY(13)
-    //     .colors([config.color])
-    //     .colorAccessor(function (d) {
-    //         return 0;
-    //     })
-    //     .renderTitle(true)
-    //     .title(function (d) {
-    //         text = d.key + " | No. Targeted Population  : " + formatComma(d.value);
-    //         return text; //capitalizeFirstLetter(text);
-    //     })
-    //     .xAxis().ticks(5);
-
-
-
 
     dc.dataCount('#count-info')
         .dimension(cf)
