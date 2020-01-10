@@ -9,7 +9,7 @@ h1 {
 h4 {
     color: #222;
     font-size: 18px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 body{
@@ -113,5 +113,23 @@ a:hover {
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
     font-size: 14px;
+}
+
+#logoContainer {
+  position: absolute;
+  z-index: 100;
+  top: 10px;
+  left: 30px;
+  width: 100px;
+  height: 100px;
+}
+
+#legendImg {
+  position: absolute;
+  z-index: 100;
+  top: 790px;
+  left: 30px;
+  width: 100px;
+  height: 100px;
 }
 

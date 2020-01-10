@@ -22,6 +22,7 @@ dc.leafletChart = function (_chart) {
         map.dragging.disable();
         $(".leaflet-control-zoom").css("visibility", "hidden");
 
+
         // L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         //     attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // }).addTo(map);
@@ -44,6 +45,12 @@ dc.leafletChart = function (_chart) {
             noHide: true,
             direction: 'auto'
         }).addTo(map);
+
+        var mapControlsContainer = document.getElementsByClassName("leaflet-control")[0];
+        var logoContainer = document.getElementById("logoContainer");
+        var legendImg = document.getElementById("legendImg");
+
+        //mapControlsContainer.appendChild(logoContainer);
 
         //L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         //    maxZoom: 19,
