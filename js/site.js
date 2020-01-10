@@ -31,25 +31,7 @@ function generatePieValuesAndColors(group, ordinalColors){
     }
 
     return [values, colors];
-} //end generatePieValuesAndColors
-
-
-
-// var brownColors = ['#a8763e', '#d3ba9e', '#caac8b'];
-// var greenColors = ['#3ec76c', '#51cd7b', '#65d28a','#79d899','#8ddea8','#a1e3b7','#89d879','#4D6B49','#83D67A','#009944'];
-// var otherColors = ['#fa8334','#fa8334','#fee6d6'];
-
-// var c10 = d3.scale.category10();
-// var c20 = d3.scale.category20();
-// var c20b = d3.scale.category20b();
-// var c20c = d3.scale.category20c();
-// var green = ['#3ec76c', '#51cd7b', '#65d28a','#79d899','#8ddea8','#a1e3b7','#89d879','#4D6B49','#83D67A','#009944'];
-// var brown = ['#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b'];
-
-// function colores_google(n) {
-//   var colores_g = ['#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b','#20bf55','#36c566','#4ccb76','#62d288','#79d899','#8fdfaa','#a5e5bb','#bcebcc','#d2f2dd','#e8f8ee','#1cab4c','#199844','#16853b','#eab12f','#ecba46','#eec25e','#f1cb75','#f3d48c','#f5dca3','#f8e5ba','#faedd1','#fcf6e8'];
-//   return colores_g[n % colores_g.length];
-// }
+} 
 
 function print_filter(filter) {
     var f=eval(filter);
@@ -58,7 +40,6 @@ function print_filter(filter) {
     if (typeof(f.dimension) != "undefined") {f=f.dimension(function(d) { return "";}).top(Infinity);}else{}
     console.log(filter+"("+f.length+") = "+JSON.stringify(f).replace("[","[\n\t").replace(/}\,/g,"},\n\t").replace("]","\n]"));
 }
-
 
 function generate3WComponent(config, data, geom) {
     var gv_allvalue =0;
@@ -70,7 +51,6 @@ function generate3WComponent(config, data, geom) {
 
     var SABTChart = dc.rowChart('#hdx-3W-SABT');
     var TVCPBTChart = dc.rowChart('#hdx-3W-TVCPBT');
-    
 
     var VBSOAChart = dc.pieChart('#hdx-3W-VBSOA');
     var whereChart = dc.leafletChoroplethChart('#hdx-3W-where');
@@ -83,9 +63,6 @@ function generate3WComponent(config, data, geom) {
     var filtercondPie = dc.pieChart('#filterConditionality');
     var filterRestPie = dc.pieChart('#filterRestriction');
     var filterRuralUrban = dc.pieChart('#filterArea');
-
-
-
 
     var peopleAssisted = dc.numberDisplay('#peopleAssisted');
     var amountTransfered = dc.numberDisplay('#amountTransfered');
@@ -134,11 +111,6 @@ function generate3WComponent(config, data, geom) {
         return d[config.ruralField];
     });
 
-    // var SABTGroup = SABTDimension.group();
-    // var VBSOAGroup = VBSOADimension.group();
-    // var whereGroup = whereDimension.group();
-
-    // var sortedRegDim = TBBTChartDim.top(Infinity);
     var TBBTChartGroup = TBBTChartDim.group().reduceSum(function (d) {
         return d[config.sumField]
     });
@@ -343,30 +315,6 @@ function generate3WComponent(config, data, geom) {
         })
         .xAxis().ticks(5);
 
-    // var selfcoloring = ['#F3862A','#F59C50','#F7B277'];
-    // let pie3 = generatePieValuesAndColors(TPChartGroup, selfcoloring);
-    // let pieChart3Values = pie3[0],
-    //     pieChart3Colors = pie3[1];
-    // let pie3ColorScale = d3.scale.ordinal()
-    //     .domain(pieChart3Values)
-    //     .range(pieChart3Colors);
-
-    // var indexing3 = 0;
-    // TPChart.width(210).height(190)
-    //    .dimension(TPChartDim)
-    //    .group(TPChartGroup)
-    //    .renderTitle(true)
-    //    .innerRadius(30)
-    //    .colors(function(d){
-    //     return selfcoloring[d];
-    //    })
-    //    .colorAccessor(
-    //     function(d){
-    //         return pie3ColorScale.domain().indexOf(d.key);
-    //     })
-
-
-
     var coloring = ['#88553D','#A07764','#B8998A'];
     let pie1 = generatePieValuesAndColors(MChartGroup, coloring);
     let pieChart1Values = pie1[0],
@@ -375,7 +323,7 @@ function generate3WComponent(config, data, geom) {
         .domain(pieChart1Values)
         .range(pieChart1Colors);
     var indexing2 = 0;
-    MChart.width(210).height(190)
+    MChart.width(290).height(230)
        .dimension(MChartDim)
        .group(MChartGroup)
        .renderTitle(true)
@@ -432,7 +380,7 @@ function generate3WComponent(config, data, geom) {
         .range(pieChart2Colors);
 
     var indexing = 0;
-    VBSOAChart.width(210).height(190)
+    VBSOAChart.width(290).height(230)
        .dimension(VBSOADimension)
        .group(VBSOAGroup)
        .renderTitle(true)
@@ -478,7 +426,6 @@ function generate3WComponent(config, data, geom) {
         })
         .xAxis().ticks(5);
 
-
    
     var selfcoloring = ['#F3862A','#F59C50','#F7B277'];
     let pie3 = generatePieValuesAndColors(TPChartGroup, selfcoloring);
@@ -489,7 +436,7 @@ function generate3WComponent(config, data, geom) {
         .range(pieChart3Colors);
 
     var indexing3 = 0;
-    TPChart.width(210).height(190)
+    TPChart.width(290).height(230)
        .dimension(TPChartDim)
        .group(TPChartGroup)
        .renderTitle(true)
@@ -640,37 +587,7 @@ function generate3WComponent(config, data, geom) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-
 }
-
-//function hxlProxyToJSON(input, headers) {
-//    var output = [];
-//    var keys = []
-//    input.forEach(function (e, i) {
-//        if (i == 0) {
-//            e.forEach(function (e2, i2) {
-//                var parts = e2.split('+');
-//                var key = parts[0]
-//                if (parts.length > 1) {
-//                    var atts = parts.splice(1, parts.length);
-//                    atts.sort();
-//                    atts.forEach(function (att) {
-//                        key += '+' + att
-//                    });
-//                }
-//                keys.push(key);
-//            });
-//        } else {
-//            var row = {};
-//            e.forEach(function (e2, i2) {
-//                row[keys[i2]] = e2;
-//            });
-//            output.push(row);
-//        }
-//    });
-//    return output;
-//}
-//load 3W data
 
 var dataCall = $.ajax({
     type: 'GET',
@@ -697,12 +614,3 @@ $.when(dataCall, geomCall).then(function (dataArgs, geomArgs) {
     generate3WComponent(config, data, geom);
 });
 
-
-//var formatComma = d3.format(","),
-//    formatDecimal = d3.format(".1f"),
-//    formatDecimalComma = d3.format(",.2f"),
-//    formatSuffix = d3.format("s"),
-//    formatSuffixDecimal1 = d3.format(".1s"),
-//    formatSuffixDecimal2 = d3.format(".2s"),
-//    formatMoney = function(d) { return "$" + formatDecimalComma(d); },
-//    formatPercent = d3.format(",.2%");

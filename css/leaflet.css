@@ -58,7 +58,7 @@
 .leaflet-tile-loaded {
 	visibility: inherit;
 	}
-.leaflet-zoom-box.disable {
+.leaflet-zoom-box {
 	width: 0;
 	height: 0;
 	}

@@ -12,8 +12,15 @@ dc.leafletChart = function (_chart) {
     var _tiles = function (map) {
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-            minZoom: 5, maxZoom: 5
+            minZoom: 6, maxZoom: 6
         }).addTo(map);
+        map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        map.scrollWheelZoom.disable();
+        map.boxZoom.disable();
+        map.keyboard.disable();
+        map.dragging.disable();
+        $(".leaflet-control-zoom").css("visibility", "hidden");
 
         // L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         //     attribution: '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
