@@ -169,12 +169,12 @@ function generate3WComponent(config, data, geom) {
             if(v['Project title']){
                 p.numOrgs++; 
             }
-            if (v["Organization"] in p.orgas){
-                p.orgas[v["Organization"]]++;
+            if (v["Project title"] in p.orgas){
+                p.orgas[v["Project title"]]++;
                 // p.numOrgs++; //ADD BY FAIZAL edited
             }
             else {
-                p.orgas[v["Organization"]] = 1;
+                p.orgas[v["Project title"]] = 1;
                 // p.numOrgs++;
             }
 
@@ -190,11 +190,12 @@ function generate3WComponent(config, data, geom) {
             p.peopleAssisted -= +v[config.sumField];
             p.amountTransfered -= +v["Transfer value"]; //ADD BY FAIZAL edited
             p.totalHH -= +v["Households"];
-
-            p.numOrgs--;
-            p.orgas[v["Organization"]]--;
-            if (p.orgas[v["Organization"]] == 0) {
-                delete p.orgas[v["Organization"]];
+            if(v['Project title']){
+                p.numOrgs--;
+            }
+            p.orgas[v["Project title"]]--;
+            if (p.orgas[v["Project title"]] == 0) {
+                delete p.orgas[v["Project title"]];
                 // p.numOrgs--;
             }
 
@@ -524,6 +525,7 @@ function generate3WComponent(config, data, geom) {
     };
 
     var numO = function (d) {
+        console.log(d);
         return d.numOrgs;
     };
 
