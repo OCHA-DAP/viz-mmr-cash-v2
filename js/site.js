@@ -166,7 +166,9 @@ function generate3WComponent(config, data, geom) {
             p.peopleAssisted += +v[config.sumField];
             p.amountTransfered += +v["Transfer value"]; //ADD BY FAIZAL edited
             p.totalHH += +v["Households"];
-            p.numOrgs++;
+            if(v['Project title']){
+                p.numOrgs++; 
+            }
             if (v["Organization"] in p.orgas){
                 p.orgas[v["Organization"]]++;
                 // p.numOrgs++; //ADD BY FAIZAL edited
