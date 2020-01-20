@@ -163,7 +163,7 @@ function generate3WComponent(config, data, geom) {
 
     var gp = cf.groupAll().reduce(
         function (p, v) {
-            p.peopleAssisted += +v[config.sumField];
+            p.peopleAssisted += parseInt(v[config.sumField]);
             p.amountTransfered += +v["Transfer value"]; //ADD BY FAIZAL edited
             p.totalHH += +v["Households"];
             if(v['Project title']){
@@ -187,7 +187,7 @@ function generate3WComponent(config, data, geom) {
             return p;
         },
         function (p, v) {
-            p.peopleAssisted -= +v[config.sumField];
+            p.peopleAssisted -= parseInt(v[config.sumField]);
             p.amountTransfered -= +v["Transfer value"]; //ADD BY FAIZAL edited
             p.totalHH -= +v["Households"];
             if(v['Project title']){
