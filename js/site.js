@@ -318,7 +318,7 @@ function generate3WComponent(config, data, geom) {
         })
         .xAxis().ticks(5);
 
-    var coloring = ['#88553D','#A07764','#B8998A'];
+    var coloring = ['#F6AE2D','#F7BC53','#F9CB79'];
     let pie1 = generatePieValuesAndColors(MChartGroup, coloring);
     let pieChart1Values = pie1[0],
         pieChart1Colors = pie1[1];
@@ -374,7 +374,7 @@ function generate3WComponent(config, data, geom) {
         })
         .xAxis().ticks(5);
 
-    var docoloring = ['#036A58','#A3E8DC','#48D2B9','#038E75','#04B192','#1AC7A8','#76DDCB'];
+    var docoloring = ['#46B5B8','#41C9BC','#73E3E5','#92E9EB','#B1EFF0','#D0F5F6','#26A195'];
     let pie2 = generatePieValuesAndColors(VBSOAGroup, docoloring);
     let pieChart2Values = pie2[0],
         pieChart2Colors = pie2[1];
@@ -430,7 +430,7 @@ function generate3WComponent(config, data, geom) {
         .xAxis().ticks(5);
 
    
-    var selfcoloring = ['#F3862A','#F59C50','#F7B277'];
+    var selfcoloring = ['#F48042','#F69C6C','#F9B896'];
     let pie3 = generatePieValuesAndColors(TPChartGroup, selfcoloring);
     let pieChart3Values = pie3[0],
         pieChart3Colors = pie3[1];
