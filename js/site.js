@@ -326,11 +326,14 @@ function generate3WComponent(config, data, geom) {
         .domain(pieChart1Values)
         .range(pieChart1Colors);
     var indexing2 = 0;
-    MChart.width(290).height(230)
+    MChart.width(290)
+       .height(230)
+       .innerRadius(100)
        .dimension(MChartDim)
        .group(MChartGroup)
        .renderTitle(true)
        .innerRadius(30)
+       // .legend(dc.legend().x(90).y(100).gap(5))
        .colors(function(d){
         return coloring[d];
        })
@@ -353,6 +356,7 @@ function generate3WComponent(config, data, geom) {
              console.log('click!', d);
              reset_indexing();
           });
+          // chart.render();
        });
 
     TVCPBTChart.width($('.blockbar').width()).height(400).margins({top: 10, right: 10, bottom: 30, left: 0})
@@ -388,6 +392,7 @@ function generate3WComponent(config, data, geom) {
        .group(VBSOAGroup)
        .renderTitle(true)
        .innerRadius(30)
+       // .legend(dc.legend().x(30).y(10).gap(5))
        .colors(function(d){
         return docoloring[d];
        })
@@ -444,6 +449,7 @@ function generate3WComponent(config, data, geom) {
        .group(TPChartGroup)
        .renderTitle(true)
        .innerRadius(30)
+       // .legend(dc.legend().x(90).y(10).gap(5))
        .colors(function(d){
         return selfcoloring[d];
        })
@@ -525,7 +531,7 @@ function generate3WComponent(config, data, geom) {
     };
 
     var numO = function (d) {
-        console.log(d);
+        // console.log(d);
         return d.numOrgs;
     };
 

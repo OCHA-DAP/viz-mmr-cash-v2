@@ -131,3 +131,29 @@ a:hover {
   height: 100px;
 }
 
+#legend1 {
+  position: absolute;
+  z-index: 100;
+  top: 300px;
+  left: 10px;
+  height: 100px;
+}
+
+#legend2 {
+  position: absolute;
+  z-index: 100;
+  top: 300px;
+  left: 10px;
+  height: 100px;
+}
+
+#legend3 {
+  position: absolute;
+  z-index: 100;
+  top: 300px;
+  left: 10px;
+  height: 100px;
+}
+
+
+
