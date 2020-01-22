@@ -48,7 +48,7 @@ a:hover {
 
 #hdx-3W-where {
     min-height: 200px;
-    width: 100%;
+    width: 90%;
         margin-bottom: 7px;
     margin-top: 10px;
 }
@@ -126,9 +126,9 @@ a:hover {
 #legendImg {
   position: absolute;
   z-index: 100;
-  top: 790px;
+  top: 810px;
   left: 30px;
-  height: 100px;
+  height: 90px;
 }
 
 #legend1 {
